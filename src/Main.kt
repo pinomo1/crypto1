@@ -43,10 +43,23 @@ fun main(){
     println(monoalphabetic.key)
     println()
 
-    val yourFileName : String = "C:\\Users\\Nail SH\\Desktop\\file.txt"
+    println("Enter the file name: ")
+    val yourFileName = readln()
     val yourFile = java.io.File(yourFileName)
+    if (!yourFile.exists()){
+        throw Exception("File not found.")
+    }
 
-    val yourFunction : CryptoFunction<*> = monoalphabetic
+    println("What function do you want to use?")
+    println("1. Vigenere")
+    println("2. Caesar")
+    println("3. Monoalphabetic")
+    val yourFunction : CryptoFunction<*> = when(readln().toInt()){
+        1 -> vigenere
+        2 -> caesar
+        3 -> monoalphabetic
+        else -> throw Exception("Invalid choice.")
+    }
 
     val ecb = ECB(yourFunction)
     ecb.encryptFile(yourFileName)
