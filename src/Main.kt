@@ -1,8 +1,8 @@
 import models.abstracts.CryptoFunction
+import models.classes.FileCryptoFunction
 import models.classes.crypto_functions.CaesarFunction
 import models.classes.crypto_functions.MonoalphabeticFunction
 import models.classes.crypto_functions.VigenereFunction
-import models.classes.file_crypto_functions.CBC
 import models.classes.file_crypto_functions.ECB
 import models.statics.CryptoFunctionTester
 import models.statics.FileHelper
@@ -62,6 +62,7 @@ fun main(){
     }
 
     val ecb = ECB(yourFunction)
-    ecb.encryptFile(yourFileName)
-    ecb.decryptFile(FileHelper.appendToFileName(yourFile, "_ecb_encrypted"))
+    val fileCrypt = FileCryptoFunction(ecb)
+    fileCrypt.encryptFile(yourFileName)
+    fileCrypt.decryptFile(FileHelper.appendToFileName(yourFile, "_enc"))
 }
