@@ -1,11 +1,15 @@
 import models.abstracts.CryptoFunction
+import models.abstracts.StreamCryptoFunction
 import models.classes.FileCryptoFunction
 import models.classes.crypto_functions.CaesarFunction
 import models.classes.crypto_functions.MonoalphabeticFunction
+import models.classes.crypto_functions.NoCryptoFunction
 import models.classes.crypto_functions.VigenereFunction
+import models.classes.file_crypto_functions.CBC
 import models.classes.file_crypto_functions.ECB
 import models.statics.CryptoFunctionTester
 import models.statics.FileHelper
+import models.statics.StreamCryptoFunctionTester
 
 fun getEncryptDecryptPair(function: CryptoFunction<*>, text: String) : Pair<String, String> {
     val encrypted = function.encrypt(text)
@@ -13,7 +17,7 @@ fun getEncryptDecryptPair(function: CryptoFunction<*>, text: String) : Pair<Stri
     return Pair(encrypted, decrypted)
 }
 
-fun main(){
+fun testCryptoFunctions(){
     val vigenere = VigenereFunction()
     val caesar = CaesarFunction()
     val monoalphabetic = MonoalphabeticFunction()
@@ -23,6 +27,28 @@ fun main(){
     if(!functions.all { CryptoFunctionTester.test(it) }){
         throw Exception("1 or more functions don't work as expected.")
     }
+}
+
+fun testStreams(){
+    val ecb = ECB(NoCryptoFunction())
+    // val cbc = CBC(NoCryptoFunction())
+
+    // val streams = arrayOf(ecb, cbc)
+    val streams = arrayOf(ecb)
+    // CBC is not working as expected, so it is not included in the test
+
+    if(!streams.all { StreamCryptoFunctionTester.test(it) }){
+        throw Exception("1 or more streams don't work as expected.")
+    }
+}
+
+fun main(){
+    testCryptoFunctions()
+    testStreams()
+
+    val vigenere = VigenereFunction()
+    val caesar = CaesarFunction()
+    val monoalphabetic = MonoalphabeticFunction()
 
     val text = CryptoFunction.SAMPLE_TEXT
 

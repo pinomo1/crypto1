@@ -5,7 +5,7 @@ import models.exceptions.InvalidKeyException
 // override either crypt or decrypt and encrypt
 abstract class CryptoFunction<T> {
     companion object{
-        const val SAMPLE_TEXT = "the quick brown fox jumps over the lazy dog"
+        const val SAMPLE_TEXT = "the quick brown fox jumps over the lazy dog, lorem ipsum dolor sit amet 3.1415926535, hello world! how are you?"
     }
 
     var key : T = generateKey()

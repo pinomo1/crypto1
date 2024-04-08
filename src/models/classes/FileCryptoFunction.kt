@@ -13,8 +13,7 @@ class FileCryptoFunction<T: StreamCryptoFunction<*, T2>, T2>(val cryptoFunction:
         val resultFile = File(FileHelper.appendToFileName(originalFile, postfix))
         val inputStream: InputStream = originalFile.inputStream()
         val outputStream: OutputStream = resultFile.outputStream()
-        val fileByteSize = originalFile.length()
-        cryptoFunction.streamOperation(inputStream, outputStream, fileByteSize, isEncrypt, iv)
+        cryptoFunction.streamOperation(inputStream, outputStream, isEncrypt, iv)
         inputStream.close()
         outputStream.close()
     }
