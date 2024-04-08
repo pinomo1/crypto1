@@ -1,4 +1,4 @@
-package classes
+package models.statics
 
 import java.io.File
 
