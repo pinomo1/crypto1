@@ -1,12 +1,10 @@
 import models.abstracts.CryptoFunction
-import models.abstracts.StreamCryptoFunction
 import models.classes.FileCryptoFunction
 import models.classes.crypto_functions.CaesarFunction
 import models.classes.crypto_functions.MonoalphabeticFunction
 import models.classes.crypto_functions.NoCryptoFunction
 import models.classes.crypto_functions.VigenereFunction
-import models.classes.file_crypto_functions.CBC
-import models.classes.file_crypto_functions.ECB
+import models.classes.stream_crypto_functions.ECB
 import models.statics.CryptoFunctionTester
 import models.statics.FileHelper
 import models.statics.StreamCryptoFunctionTester

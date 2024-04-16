@@ -1,4 +1,4 @@
-package models.classes.file_crypto_functions
+package models.classes.stream_crypto_functions
 
 import models.abstracts.CryptoFunction
 import models.abstracts.StreamCryptoFunction
