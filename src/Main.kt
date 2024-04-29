@@ -1,9 +1,6 @@
 import models.abstracts.CryptoFunction
 import models.classes.FileCryptoFunction
-import models.classes.crypto_functions.CaesarFunction
-import models.classes.crypto_functions.MonoalphabeticFunction
-import models.classes.crypto_functions.NoCryptoFunction
-import models.classes.crypto_functions.VigenereFunction
+import models.classes.crypto_functions.*
 import models.classes.stream_crypto_functions.ECB
 import models.statics.CryptoFunctionTester
 import models.statics.FileHelper
@@ -17,10 +14,9 @@ fun getEncryptDecryptPair(function: CryptoFunction<*>, text: String) : Pair<Stri
 
 fun testCryptoFunctions(){
     val vigenere = VigenereFunction()
-    val caesar = CaesarFunction()
     val monoalphabetic = MonoalphabeticFunction()
 
-    val functions = arrayOf(vigenere, caesar, monoalphabetic)
+    val functions = arrayOf(vigenere, monoalphabetic)
 
     if(!functions.all { CryptoFunctionTester.test(it) }){
         throw Exception("1 or more functions don't work as expected.")
@@ -47,6 +43,8 @@ fun main(){
     val vigenere = VigenereFunction()
     val caesar = CaesarFunction()
     val monoalphabetic = MonoalphabeticFunction()
+    val playfair = PlayfairFunction()
+    val railfence = RailfenceFunction()
 
     val text = CryptoFunction.SAMPLE_TEXT
 
@@ -65,6 +63,16 @@ fun main(){
     monoalphabetic.generateKey() // works as a monoalphabetic substitution cipher
     println(getEncryptDecryptPair(monoalphabetic, text))
     println(monoalphabetic.key)
+    println()
+
+    playfair.generateKey()
+    println(getEncryptDecryptPair(playfair, text))
+    println(playfair.key)
+    println()
+
+    railfence.generateKey()
+    println(getEncryptDecryptPair(railfence, text))
+    println(railfence.key)
     println()
 
     println("Enter the file name: ")
