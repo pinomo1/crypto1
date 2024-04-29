@@ -4,15 +4,13 @@ import models.abstracts.CryptoFunction
 
 class MonoalphabeticFunction : CryptoFunction<Map<Char, Char>>() {
     override fun crypt(str: String, isEncrypt: Boolean): String {
-        var copyStr = str
-        copyStr = copyStr.lowercase()
         var result = ""
         var dict = key
         if (isEncrypt) {
             dict = dict.entries.associate { (k, v) -> v to k }
         }
-        copyStr.forEach { c ->
-            result += if (c in 'a'..'z') {
+        str.forEach { c ->
+            result += if (c in (('a'..'z') + ('A'..'Z') + ('0'..'9'))) {
                 dict[c]
             } else {
                 c
@@ -22,7 +20,7 @@ class MonoalphabeticFunction : CryptoFunction<Map<Char, Char>>() {
     }
 
     override fun generateKey(): Map<Char, Char> {
-        val alphabet = ('a'..'z').toList()
+        val alphabet = (('a'..'z') + ('A'..'Z') + ('0'..'9')).toList()
         val scrambledAlphabet = alphabet.shuffled()
         val key = alphabet.zip(scrambledAlphabet).toMap()
         loadKey(key)
@@ -30,7 +28,7 @@ class MonoalphabeticFunction : CryptoFunction<Map<Char, Char>>() {
     }
 
     override fun isValidForKey(potentialKey: Map<Char, Char>): Boolean {
-        val lowerAlphabet = ('a'..'z').toList()
+        val lowerAlphabet = (('a'..'z') + ('A'..'Z') + ('0'..'9')).toList()
         return potentialKey.keys.all { it in lowerAlphabet } && potentialKey.values.all { it in lowerAlphabet } && potentialKey.keys.size == 26
     }
 
