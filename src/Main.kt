@@ -1,9 +1,7 @@
 import models.abstracts.CryptoFunction
-import models.abstracts.StreamCryptoFunction
 import models.classes.FileCryptoFunction
 import models.classes.crypto_functions.*
-import models.classes.file_crypto_functions.CBC
-import models.classes.file_crypto_functions.ECB
+import models.classes.stream_crypto_functions.ECB
 import models.statics.CryptoFunctionTester
 import models.statics.FileHelper
 import models.statics.StreamCryptoFunctionTester

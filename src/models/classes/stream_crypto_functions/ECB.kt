@@ -1,11 +1,9 @@
-package models.classes.file_crypto_functions
+package models.classes.stream_crypto_functions
 
 import models.abstracts.CryptoFunction
 import models.abstracts.StreamCryptoFunction
 import models.exceptions.InvalidBlockSizeException
 import models.interfaces.IHasBlockSize
-import models.statics.FileHelper
-import java.io.File
 import java.io.InputStream
 import java.io.OutputStream
 
