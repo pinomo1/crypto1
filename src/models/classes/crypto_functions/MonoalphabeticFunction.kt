@@ -29,7 +29,7 @@ class MonoalphabeticFunction : CryptoFunction<Map<Char, Char>>() {
 
     override fun isValidForKey(potentialKey: Map<Char, Char>): Boolean {
         val lowerAlphabet = (('a'..'z') + ('A'..'Z') + ('0'..'9')).toList()
-        return potentialKey.keys.all { it in lowerAlphabet } && potentialKey.values.all { it in lowerAlphabet } && potentialKey.keys.size == 26
+        return potentialKey.keys.all { it in lowerAlphabet } && potentialKey.values.all { it in lowerAlphabet } && potentialKey.keys.size == 62
     }
 
 }

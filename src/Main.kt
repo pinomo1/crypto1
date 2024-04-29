@@ -44,7 +44,7 @@ fun main(){
     val caesar = CaesarFunction()
     val monoalphabetic = MonoalphabeticFunction()
     val playfair = PlayfairFunction()
-    val railfence = RailfenceFunction()
+    val railfence = RailFenceFunction()
 
     val text = CryptoFunction.SAMPLE_TEXT
 
