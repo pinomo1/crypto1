@@ -27,7 +27,7 @@ abstract class CryptoFunction<T> {
 
     abstract fun isValidForKey(potentialKey: T): Boolean;
 
-    fun loadKey(key: T){
+    open fun loadKey(key: T){
         if (!isValidForKey(key)){
             throw InvalidKeyException()
         }
