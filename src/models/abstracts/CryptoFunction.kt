@@ -16,11 +16,11 @@ abstract class CryptoFunction<T> {
     }
 
     open fun decrypt(str: String): String {
-        return crypt(str, true)
+        return crypt(str, false)
     }
 
     open fun encrypt(str: String): String {
-        return crypt(str, false)
+        return crypt(str, true)
     }
 
     abstract fun generateKey(): T;
