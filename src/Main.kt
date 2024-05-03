@@ -25,6 +25,7 @@ fun main(){
     println("Decrypted: $decryptedRSA")
     println()
 
+    /*
     val functions : List<CryptoFunction<*>> = listOf(
         CaesarFunction(),
         VigenereFunction(),
@@ -33,6 +34,7 @@ fun main(){
         PlayfairFunction(),
         RailFenceFunction()
     )
+
 
     functions.forEach { function ->
         val (encrypted, decrypted) = getEncryptDecryptPair(function, CryptoFunction.SAMPLE_TEXT)
@@ -43,4 +45,5 @@ fun main(){
         println("Function: ${function::class.simpleName}")
         println()
     }
+    */
 }

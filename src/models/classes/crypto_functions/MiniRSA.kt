@@ -28,23 +28,36 @@ class MiniRSA : CryptoFunction<Triple<Int, Int, Int>>() {
         return x == 1
     }
 
+    // TODO: if triple is 241, 61, 341, then ciphertext is the same as the plaintext; fix?
     override fun generateKey(): Triple<Int, Int, Int> {
-        var p : Int;
-        var q : Int;
+        var isSuccess : Boolean
+        var e = 0
+        var d = 0
+        var n = 0
         do {
-            p = (10..99).random()
-            q = (10..99).random()
-        } while (!isPrime(p) || !isPrime(q))
-        val n = p * q
+            try {
+                isSuccess = true
+                var p : Int
+                var q : Int
+                do {
+                    p = (10..99).random()
+                    q = (10..99).random()
+                } while (!isPrime(p) || !isPrime(q) || q == p)
+                n = p * q
 
-        val phi = (p - 1) * (q - 1)
+                val phi = (p - 1) * (q - 1)
 
-        var e : Int
-        do {
-            e = (2..<phi).random()
-        } while (!isRelativePrime(e, phi))
+                do {
+                    e = (2..<phi).random()
+                } while (!isRelativePrime(e, phi))
 
-        val d = (2..phi).first { (it * e) % phi == 1 }
+                d = (2..phi).last { (it * e) % phi == 1 && it != e }
+            }
+            catch (ex : NoSuchElementException){
+                isSuccess = false
+            }
+        }while (!isSuccess)
+
         loadKey(Triple(e, d, n))
 
         return Triple(e, d, n)
